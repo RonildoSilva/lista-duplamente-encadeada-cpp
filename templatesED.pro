@@ -25,4 +25,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     template/object.hpp \
     datastructure/dclist.h \
-    datastructure/node.hpp
+    datastructure/node.hpp \
+    jsonparser/jsonparser.h
