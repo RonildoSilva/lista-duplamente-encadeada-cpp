@@ -17,6 +17,9 @@ int main(int argc, char *argv[])
 {
     //QCoreApplication a(argc, argv);
 
+    //DCList<int> * doubleChainList;
+    //JsonParser<int> * jPaser = new JsonParser<int>();
+
     DCList<string> * doubleChainList;
     JsonParser<string> * jPaser = new JsonParser<string>();
 
