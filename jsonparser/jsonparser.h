@@ -14,6 +14,7 @@ class JsonParser
         DCList<Type> * jsonFileToDSList(std::string jsonFile);
         JsonParser();
         void put_int(int value);
+        void put_float(float value);
         void put_string(std::string value);
     private:
         std::ifstream fileReader;
@@ -39,7 +40,7 @@ DCList<Type> * JsonParser<Type>::jsonFileToDSList(std::string jsonFile){
             //std::string subject(line);
 
             try {
-              std::regex regularExpression("(?!\"\\w+\":)(?:(\\d+)|\"(\\w+)\")");
+              std::regex regularExpression("(?!\"\\w+\":)(?:(\\d+.\\d+)|\"(\\w+)\")");
               std::sregex_iterator next(line.begin(), line.end(), regularExpression);
               std::sregex_iterator end;
 
@@ -48,17 +49,28 @@ DCList<Type> * JsonParser<Type>::jsonFileToDSList(std::string jsonFile){
                 std::string str = match.str();
                 str.erase(std::remove(str.begin(), str.end(), '"'), str.end());
 
+                int resp = strspn( str.c_str(), "-0123456789" );
+                std::cout << "[" << str << "] - ( " << resp << " )" << std::endl;
+
                 if(std::is_same<Type, int>::value){
-                    const int val = std::atoi(str.c_str());
-                    put_int(val);
+                    const bool is_int = strspn( str.c_str(), "-0123456789" );
+                    if(is_int){
+                        const int val = std::atoi(str.c_str());
+                        put_int(val);
+                    }
+                }
+                else if(std::is_same<Type, float>::value){
+                    const float val = std::atol(str.c_str());
+                    put_float(val);
                 }
                 else if(std::is_same<Type, std::string>::value){
                     put_string(str);
                 }
 
                 next++;
-              }
-            } catch (std::regex_error& exeption) {
+                }
+            }
+            catch (std::regex_error& exeption) {
                 std::cout << exeption.what() << std::endl;
             }
         }
@@ -69,6 +81,12 @@ DCList<Type> * JsonParser<Type>::jsonFileToDSList(std::string jsonFile){
 
 template<>
 void JsonParser<int>::put_int(int value)
+{
+    this->doubleChainList->pushFront(value);
+}
+
+template<>
+void JsonParser<float>::put_float(float value)
 {
     this->doubleChainList->pushFront(value);
 }
