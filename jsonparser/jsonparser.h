@@ -60,8 +60,11 @@ DCList<Type> * JsonParser<Type>::jsonFileToDSList(std::string jsonFile){
                     }
                 }
                 else if(std::is_same<Type, float>::value){
-                    const float val = std::atol(str.c_str());
-                    put_float(val);
+                    const bool is_float = strspn( str.c_str(), "-.0123456789" );
+                    if(is_float){
+                        const float val = std::atof(str.c_str());
+                        put_float(val);
+                    }
                 }
                 else if(std::is_same<Type, std::string>::value){
                     put_string(str);

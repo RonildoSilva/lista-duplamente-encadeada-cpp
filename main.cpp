@@ -17,11 +17,11 @@ int main(int argc, char *argv[])
 {
     //QCoreApplication a(argc, argv);
 
-    DCList<int> * doubleChainList;
-    JsonParser<int> * jPaser = new JsonParser<int>();
+    //DCList<int> * doubleChainList;
+    //JsonParser<int> * jPaser = new JsonParser<int>();
 
-    //DCList<float> * doubleChainList;
-    //JsonParser<float> * jPaser = new JsonParser<float>();
+    DCList<float> * doubleChainList;
+    JsonParser<float> * jPaser = new JsonParser<float>();
 
     //DCList<string> * doubleChainList;
     //JsonParser<string> * jPaser = new JsonParser<string>();
