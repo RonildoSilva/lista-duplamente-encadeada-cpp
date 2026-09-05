@@ -1,55 +1,36 @@
-## Questão 01
-Nesta questão deve-se implementar em C++ uma lista duplamente encadeada, com a suas devidas operações básicas:
+# Lista duplamente encadeada com templates em C++
 
-## Node
-Nó de uma lista duplamente encadeada:
-- `void setObject(Object<Type> * object);`
-    - Atribui um tipo genérico como valor do nó.
-- `Object<Type> * getObject();`
-    - Retona objeto-valor.
-- `void setPrevious(Node * previous);`
-    - Atribui referência a nó anterior.
-- `Node<Type> *getPrevious();`
-    - Retorna referência a nó anterior.
-- `void setNext(Node * next);`
-    - Atribui referência a nó seguinte.
-- `Node<Type> *getNext();`
-    - Retorna referência a nó seguinte.
-- `bool hasNext();`
-    - Verifica se o nó possui um elemento próximo.
+> Lista duplamente encadeada genérica (`DCList<Type>`) com serialização de e para JSON, escrita apenas com headers.
 
-### DCList
-Lista duplamente encadeada:
-- `void pushFront(Type value);`
-    - Insere elemento no fim da lista.
-- `void pushBack(Type value);`
-    - Insere elemento no início da lista.
-- `void popFront();`
-    - Remove elemento do fim da lista.
-- `void popBack();`
-    - Remove elemento do início da lista.
-- `bool find(Type value);`
-    - Busca elemento.
-- `bool isEmpty();`
-    - Verifica se a lista está vazia.
-- `void show();`
-    - Exibe todos os elementos da lista.
-- `Node<Type> * getHeadNode();`
-    - Retorna primeiro elemento da lista.
-- `Node<Type> * getTailNode();`
-    - Retorna último elemento da lista.
+![status](https://img.shields.io/badge/status-concluído-success) ![cpp](https://img.shields.io/badge/C%2B%2B-14-blue) ![qt](https://img.shields.io/badge/build-qmake-green)
 
-## JsonParser
-Parser JSON <-> Lista
-- `DCList<Type> * jsonFileToDSList(std::string jsonFile);`
-    - Carrega valores do arquivo JSON e retorna uma lista populada com esses valores.
-- `void DSListToJson();`
-    - Armazena valores da lista num arquivo JSON.
-- `void put_int(int value);`
-    - Template specialization (int)
-- `void put_float(float value);`
-    - Template specialization (float)
-- `void put_string(std::string value);`
-    - Template specialization (string)
+## Sobre
+Questão 1 de um processo seletivo (2019). O objetivo era implementar em C++ uma lista duplamente encadeada com operações básicas e carregar/salvar seu conteúdo em arquivo JSON, sem bibliotecas externas. O parser JSON usa expressões regulares da biblioteca padrão e especialização de templates para `int`, `float` e `std::string`.
 
-(Qt Creator 4.8.2) Based on Qt 5.9.8 (GCC 5.3.1 20160406 (Red Hat 5.3.1-6), 64 bit).
+## Stack
+- C++14, biblioteca padrão (`<regex>`, `<type_traits>`)
+- Projeto qmake (`.pro`), criado no Qt Creator 4.8
+
+## Estrutura de pastas
+```text
+datastructure/dclist.hpp   DCList<Type>: pushFront, pushBack, popFront, popBack, find, isEmpty, show
+datastructure/node.hpp     Node<Type> com ponteiros previous/next
+template/object.hpp        Object<Type>, invólucro do valor armazenado
+jsonparser/jsonparser.hpp  JsonParser<Type>: jsonFileToDSList, DSListToJson, put_int/float/string
+input/content.json         arquivo de entrada de exemplo
+main.cpp                   demonstração
+```
+
+## Como executar
+```bash
+qmake selecaoFFQuestao01.pro && make
+./selecaoFFQuestao01
+# ou, sem Qt:
+g++ -std=c++14 -I. main.cpp -o lista && ./lista
+```
+
+## Status
+Concluído.
+
+## Autor
+Ronildo Silva · ronildo.comp@gmail.com
