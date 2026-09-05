@@ -1,0 +1,15 @@
+# Sistema / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.~lock*#
+# C/C++ / Qt
+*.o
+*.exe
+*.pro.user
+moc_*
+ui_*.h
+qrc_*
