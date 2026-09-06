@@ -34,3 +34,6 @@ Concluído.
 
 ## Autor
 Ronildo Silva · ronildo.comp@gmail.com
+
+## Histórico do Bitbucket
+As branches `bitbucket/*` trazem o histórico original deste projeto no Bitbucket (`RonildoOliveira/datastructuretemplate`), migrado em setembro de 2026.
